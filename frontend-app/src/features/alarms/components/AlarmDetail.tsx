@@ -15,7 +15,13 @@ export function AlarmDetail() {
         <SeverityBadge severity={data.severity} />
       </div>
       <p className="mt-2 text-[11px] text-[#E4EDFB]">{data.title}</p>
-      <p className="mt-1 text-[10px] text-[#3D5368]">{data.description}</p>
+      <p className="mt-1 text-[10px] text-[#3D5368]">{data.message}</p>
+      <div className="mt-2 flex flex-wrap gap-2 font-mono text-[9px] text-[#7A90AA]">
+        <span>state: {data.state}</span>
+        {data.currentValue != null ? <span>current: {data.currentValue}</span> : null}
+        {data.thresholdValue != null ? <span>threshold: {data.thresholdValue}</span> : null}
+        {data.rule ? <span>rule: {data.rule.code}</span> : null}
+      </div>
       <ol className="mt-3 space-y-2 border-l border-white/5 pl-3">
         {data.timeline.map((event) => (
           <li key={event.id} className="text-[10px] text-[#7A90AA]">

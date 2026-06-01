@@ -1,5 +1,5 @@
 import { ApiError } from '../lib/api-error'
-import { alarms, assets, facilityTree, getAlarmDetailFixture, getAssetDetailFixture, getTimeseriesFixture, sceneManifest, scenes } from './data'
+import { alarms, assets, facilityTree, getAlarmDetailFixture, getAssetDetailFixture, getLatestMetricsFixture, getTimeseriesFixture, sceneManifest, scenes } from './data'
 
 const delay = () => new Promise((resolve) => window.setTimeout(resolve, 120))
 
@@ -32,18 +32,21 @@ export async function mockGetAssetDetail(assetId: string) {
 }
 
 export async function mockGetLatestMetrics(assetId: string) {
-  const asset = await mockGetAssetDetail(assetId)
-  return { assetId, metrics: asset.latestMetrics }
+  await delay()
+  return { assetId, items: getLatestMetricsFixture(assetId) }
 }
 
 export async function mockGetTimeseries(assetId: string, metric: string) {
   await delay()
-  return { assetId, metric, unit: metric === 'temperature' ? '°C' : metric === 'power' ? 'kW' : '%', points: getTimeseriesFixture(assetId, metric) }
+  const unit = metric === 'temperature' ? '°C' : metric === 'power' ? 'kW' : '%'
+  const points = getTimeseriesFixture(assetId, metric)
+  return { assetId, metricKey: metric, unit, from: points[0]?.timestamp ?? '', to: points[points.length - 1]?.timestamp ?? '', interval: null, points }
 }
 
-export async function mockGetAlarms() {
+export async function mockGetAlarms(assetId?: string) {
   await delay()
-  return { items: alarms, nextCursor: null }
+  const items = assetId ? alarms.filter((alarm) => (alarm.asset?.id ?? alarm.assetId) === assetId) : alarms
+  return { items, nextCursor: null }
 }
 
 export async function mockGetAlarmDetail(alarmId: string) {

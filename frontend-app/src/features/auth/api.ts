@@ -5,7 +5,7 @@ export type AuthUser = {
   username: string
   email: string
   displayName: string
-  avatarInitials: string
+  avatarInitials: string | null
   roles: string[]
   permissions: string[]
 }
