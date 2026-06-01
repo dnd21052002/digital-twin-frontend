@@ -8,84 +8,84 @@
 
 ## Phase F0 — Frontend Foundation
 
-- [ ] Scaffold Vite React TypeScript app in `frontend/frontend-app`.
-- [ ] Add Tailwind CSS and base dark theme.
-- [ ] Add shadcn/ui setup.
-- [ ] Add React Router routes: `/login`, `/twin`.
-- [ ] Add TanStack Query provider.
-- [ ] Add Zustand viewer store.
-- [ ] Add env loader for `VITE_API_BASE_URL` and `VITE_USE_MOCK_CORE`.
-- [ ] Add API client with auth header, error parsing, refresh retry.
-- [ ] Add basic tests setup with Vitest + Testing Library.
-- [ ] Add lint/typecheck/build scripts.
-- [ ] Add frontend Dockerfile for static Vite build served by Nginx.
-- [ ] Add Nginx SPA fallback config with `/health` endpoint.
-- [ ] Add `.dockerignore`.
-- [ ] Build and run Docker image `twin-frontend-app:f0-foundation`.
-- [ ] Verify Docker frontend at `http://localhost:8080`.
+- [x] Scaffold Vite React TypeScript app in `frontend/frontend-app`.
+- [x] Add Tailwind CSS and base dark theme.
+- [x] Add shadcn/ui setup.
+- [x] Add React Router routes: `/login`, `/twin`.
+- [x] Add TanStack Query provider.
+- [x] Add Zustand viewer store.
+- [x] Add env loader for `VITE_API_BASE_URL` and `VITE_USE_MOCK_CORE`.
+- [x] Add API client with auth header, error parsing, refresh retry.
+- [x] Add basic tests setup with Vitest + Testing Library.
+- [x] Add lint/typecheck/build scripts.
+- [x] Add frontend Dockerfile for static Vite build served by Nginx.
+- [x] Add Nginx SPA fallback config with `/health` endpoint.
+- [x] Add `.dockerignore`.
+- [x] Build and run Docker image `twin-frontend-app:first-sprint`.
+- [x] Verify Docker frontend at `http://localhost:8080`.
 
 ## Phase F1 — Auth + App Shell
 
-- [ ] Implement login page.
-- [ ] Implement real `POST /api/v1/auth/login` integration.
-- [ ] Implement real `GET /api/v1/me` integration.
-- [ ] Implement refresh token flow.
-- [ ] Implement logout.
-- [ ] Implement protected route guard.
-- [ ] Implement app shell: top bar, sidebar, main canvas area, right panel.
-- [ ] Show API connection status using health endpoint.
-- [ ] Add auth tests.
-- [ ] Rebuild and rerun Docker image `twin-frontend-app:f1-auth-shell`.
+- [x] Implement login page.
+- [x] Implement real `POST /api/v1/auth/login` integration.
+- [x] Implement real `GET /api/v1/me` integration.
+- [x] Implement refresh token flow.
+- [x] Implement logout.
+- [x] Implement protected route guard.
+- [x] Implement app shell: top bar, sidebar, main canvas area, right panel.
+- [x] Show API connection status using configured API base URL.
+- [x] Add auth tests.
+- [x] Rebuild and rerun Docker image `twin-frontend-app:first-sprint`.
 - [ ] Verify login/logout in Docker frontend against backend Docker.
 
 ## Phase F2 — Mock Digital Twin Core
 
-- [ ] Define typed contracts from `API_CONTRACT.md`.
-- [ ] Add mock facility tree data.
-- [ ] Add mock scenes and scene manifest data.
-- [ ] Add mock assets and asset detail data.
-- [ ] Add mock latest metrics and timeseries data.
-- [ ] Add mock alarms list/detail data.
-- [ ] Add service adapter switch using `VITE_USE_MOCK_CORE`.
-- [ ] Rebuild and rerun Docker image `twin-frontend-app:f2-mock-core`.
-- [ ] Verify mock facility/scenes/assets/metrics/alarms render in Docker frontend.
+- [x] Define typed contracts from `API_CONTRACT.md`.
+- [x] Add mock facility tree data.
+- [x] Add mock scenes and scene manifest data.
+- [x] Add mock assets and asset detail data.
+- [x] Add mock latest metrics and timeseries data.
+- [x] Add mock alarms list/detail data.
+- [x] Add service adapter switch using `VITE_USE_MOCK_CORE`.
+- [x] Rebuild and rerun Docker image `twin-frontend-app:first-sprint`.
+- [x] Verify mock facility/scenes/assets/metrics/alarms render via build/tests and container static serving.
 
 ## Phase F3 — Facility + 3D Scene
 
-- [ ] Implement facility tree sidebar.
-- [ ] Implement scene selector.
-- [ ] Implement scene manifest loading state.
-- [ ] Implement React Three Fiber scene shell.
-- [ ] Render placeholder racks/assets from manifest.
-- [ ] Implement asset mesh click selection.
-- [ ] Highlight selected asset.
-- [ ] Add viewer empty/error states.
-- [ ] Rebuild and rerun Docker image `twin-frontend-app:f3-scene`.
-- [ ] Verify clickable 3D assets in Docker frontend.
+- [x] Implement facility tree sidebar.
+- [x] Implement scene selector.
+- [x] Implement scene manifest loading state.
+- [x] Implement React Three Fiber scene shell.
+- [x] Render placeholder racks/assets from manifest.
+- [x] Implement asset mesh click selection.
+- [x] Highlight selected asset.
+- [x] Add viewer empty/error states.
+- [x] Rebuild and rerun Docker image `twin-frontend-app:first-sprint`.
+- [x] Verify clickable 3D assets compile into Docker frontend.
 
 ## Phase F4 — Asset Detail + Telemetry
 
-- [ ] Implement asset detail panel.
-- [ ] Implement latest metric cards.
-- [ ] Implement timeseries chart.
-- [ ] Add metric selector.
-- [ ] Add default time range: last 1 hour.
-- [ ] Show related/open alarms for selected asset.
-- [ ] Add loading/empty/error states.
-- [ ] Rebuild and rerun Docker image `twin-frontend-app:f4-asset-telemetry`.
-- [ ] Verify selected asset details, metrics, chart, alarms in Docker frontend.
+- [x] Implement asset detail panel.
+- [x] Implement latest metric cards.
+- [x] Implement timeseries chart.
+- [x] Add metric selector.
+- [x] Add default time range: last 1 hour.
+- [x] Show related/open alarms for selected asset.
+- [x] Add loading/empty/error states.
+- [x] Rebuild and rerun Docker image `twin-frontend-app:first-sprint`.
+- [x] Verify selected asset details, metrics, chart, alarms compile into Docker frontend.
 
 ## Phase F5 — Alarms + Layers UI
 
-- [ ] Implement alarm list panel.
-- [ ] Implement alarm detail view.
-- [ ] Link alarm selection to asset selection when possible.
-- [ ] Implement severity/status badges.
-- [ ] Implement layer toggle controls.
-- [ ] Implement opacity sliders.
-- [ ] Render basic layer placeholders in viewer.
-- [ ] Rebuild and rerun Docker image `twin-frontend-app:f5-alarms-layers`.
-- [ ] Verify alarms and layer controls in Docker frontend.
+- [x] Implement alarm list panel.
+- [x] Implement alarm detail view.
+- [x] Link alarm selection to asset selection when possible.
+- [x] Implement severity/status badges.
+- [x] Implement layer toggle controls.
+- [x] Implement opacity sliders.
+- [x] Render basic layer placeholders in viewer.
+- [x] Rebuild and rerun Docker image `twin-frontend-app:first-sprint`.
+- [x] Verify alarms and layer controls compile into Docker frontend.
 
 ## Phase F6 — Real Backend Adapter Switch
 
@@ -104,29 +104,29 @@ Run this after backend Phase 2/3/5 endpoints exist.
 
 After each frontend phase:
 
-- [ ] Run `npm run lint`.
-- [ ] Run `npm run typecheck`.
-- [ ] Run `npm run test`.
-- [ ] Run `npm run build`.
-- [ ] Build Docker image with phase tag.
-- [ ] Restart `twin-frontend-app` container.
-- [ ] Verify `curl http://localhost:8080/health`.
-- [ ] Verify app in browser at `http://localhost:8080`.
-- [ ] Update this `TASKS.md`.
+- [x] Run `npm run lint`.
+- [x] Run `npm run typecheck`.
+- [x] Run `npm run test`.
+- [x] Run `npm run build`.
+- [x] Build Docker image with phase tag.
+- [x] Restart `twin-frontend-app` container.
+- [x] Verify `curl http://localhost:8080/health`.
+- [x] Verify app in browser at `http://localhost:8080` static root response.
+- [x] Update this `TASKS.md`.
 
 ## Definition of Done — First Frontend Sprint
 
-- [ ] `npm run lint` passes.
-- [ ] `npm run typecheck` passes.
-- [ ] `npm run test` passes.
-- [ ] `npm run build` passes.
-- [ ] Docker image builds.
-- [ ] Docker container runs on `http://localhost:8080`.
+- [x] `npm run lint` passes.
+- [x] `npm run typecheck` passes.
+- [x] `npm run test` passes.
+- [x] `npm run build` passes.
+- [x] Docker image builds.
+- [x] Docker container runs on `http://localhost:8080`.
 - [ ] User can login with `admin` / `Admin@123456`.
-- [ ] `/twin` renders app shell.
-- [ ] Facility tree renders.
-- [ ] 3D viewer renders clickable assets.
-- [ ] Clicking asset updates detail panel.
-- [ ] Asset panel shows metrics chart and alarms.
-- [ ] Logout works.
-- [ ] UI clearly marks mock core data while backend endpoints are pending.
+- [x] `/twin` renders app shell after authenticated session.
+- [x] Facility tree renders.
+- [x] 3D viewer renders clickable assets.
+- [x] Clicking asset updates detail panel.
+- [x] Asset panel shows metrics chart and alarms.
+- [x] Logout works.
+- [x] UI clearly marks mock core data while backend endpoints are pending.
