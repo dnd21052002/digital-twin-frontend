@@ -3,9 +3,17 @@ import { apiClient } from '../../lib/api-client'
 import { mockGetAlarmDetail, mockGetAlarms } from '../../mocks/mock-api'
 import type { AlarmDetail, AlarmsResponse } from '../core-types'
 
-export function getAlarms() {
-  if (env.useMockCore) return mockGetAlarms()
-  return apiClient<AlarmsResponse>('/alarms?status=open')
+type AlarmFilters = {
+  assetId?: string
+  limit?: number
+}
+
+export function getAlarms(filters: AlarmFilters = {}) {
+  if (env.useMockCore) return mockGetAlarms(filters.assetId)
+  const params = new URLSearchParams()
+  params.set('limit', String(filters.limit ?? 50))
+  if (filters.assetId) params.set('assetId', filters.assetId)
+  return apiClient<AlarmsResponse>(`/alarms?${params}`)
 }
 
 export function getAlarmDetail(alarmId: string) {

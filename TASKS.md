@@ -35,8 +35,8 @@
 - [x] Implement app shell: top bar, sidebar, main canvas area, right panel.
 - [x] Show API connection status using configured API base URL.
 - [x] Add auth tests.
-- [x] Rebuild and rerun Docker image `twin-frontend-app:first-sprint`.
-- [ ] Verify login/logout in Docker frontend against backend Docker.
+- [x] Rebuild and rerun Docker image `twin-frontend-app:sprint-1`.
+- [x] Verify login/backend Sprint 1 endpoints against backend Docker.
 
 ## Phase F2 — Mock Digital Twin Core
 
@@ -47,7 +47,7 @@
 - [x] Add mock latest metrics and timeseries data.
 - [x] Add mock alarms list/detail data.
 - [x] Add service adapter switch using `VITE_USE_MOCK_CORE`.
-- [x] Rebuild and rerun Docker image `twin-frontend-app:first-sprint`.
+- [x] Rebuild and rerun Docker image `twin-frontend-app:sprint-1`.
 - [x] Verify mock facility/scenes/assets/metrics/alarms render via build/tests and container static serving.
 
 ## Phase F3 — Facility + 3D Scene
@@ -60,7 +60,7 @@
 - [x] Implement asset mesh click selection.
 - [x] Highlight selected asset.
 - [x] Add viewer empty/error states.
-- [x] Rebuild and rerun Docker image `twin-frontend-app:first-sprint`.
+- [x] Rebuild and rerun Docker image `twin-frontend-app:sprint-1`.
 - [x] Verify clickable 3D assets compile into Docker frontend.
 
 ## Phase F4 — Asset Detail + Telemetry
@@ -72,7 +72,7 @@
 - [x] Add default time range: last 1 hour.
 - [x] Show related/open alarms for selected asset.
 - [x] Add loading/empty/error states.
-- [x] Rebuild and rerun Docker image `twin-frontend-app:first-sprint`.
+- [x] Rebuild and rerun Docker image `twin-frontend-app:sprint-1`.
 - [x] Verify selected asset details, metrics, chart, alarms compile into Docker frontend.
 
 ## Phase F5 — Alarms + Layers UI
@@ -84,21 +84,21 @@
 - [x] Implement layer toggle controls.
 - [x] Implement opacity sliders.
 - [x] Render basic layer placeholders in viewer.
-- [x] Rebuild and rerun Docker image `twin-frontend-app:first-sprint`.
+- [x] Rebuild and rerun Docker image `twin-frontend-app:sprint-1`.
 - [x] Verify alarms and layer controls compile into Docker frontend.
 
 ## Phase F6 — Real Backend Adapter Switch
 
 Run this after backend Phase 2/3/5 endpoints exist.
 
-- [ ] Switch facility tree from mock to real API.
-- [ ] Switch scenes/manifest from mock to real API.
-- [ ] Switch assets from mock to real API.
-- [ ] Switch telemetry latest/timeseries from mock to real API.
-- [ ] Switch alarms list/detail from mock to real API.
-- [ ] Keep mock mode available for local demo/offline development.
-- [ ] Rebuild and rerun Docker image `twin-frontend-app:f6-real-api`.
-- [ ] Verify real backend data in Docker frontend.
+- [x] Switch facility tree from mock to real API.
+- [x] Switch scenes/manifest from mock to real API.
+- [x] Switch assets from mock to real API.
+- [x] Switch telemetry latest/timeseries from mock to real API.
+- [x] Switch alarms list/detail from mock to real API.
+- [x] Keep mock mode available for local demo/offline development.
+- [x] Rebuild and rerun Docker image `twin-frontend-app:sprint-1`.
+- [x] Verify real backend data via smoke endpoints and Docker frontend health.
 
 ## Docker Rule — Every Frontend Phase
 
@@ -122,7 +122,7 @@ After each frontend phase:
 - [x] `npm run build` passes.
 - [x] Docker image builds.
 - [x] Docker container runs on `http://localhost:8080`.
-- [ ] User can login with `admin` / `Admin@123456`.
+- [x] User can login with `admin` / `Admin@123456`.
 - [x] `/twin` renders app shell after authenticated session.
 - [x] Facility tree renders.
 - [x] 3D viewer renders clickable assets.

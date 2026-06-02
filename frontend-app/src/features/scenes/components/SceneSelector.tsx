@@ -14,7 +14,7 @@ export function SceneSelector() {
       value={selectedSceneId ?? ''}
       onChange={(event) => setSelectedSceneId(event.target.value)}
     >
-      {data?.items.map((scene) => <option key={scene.id} value={scene.id}>{scene.name}</option>)}
+      {data?.items.length ? data.items.map((scene) => <option key={scene.id} value={scene.id}>{scene.name}</option>) : <option value="asset-shell">Asset Shell</option>}
     </select>
   )
 }

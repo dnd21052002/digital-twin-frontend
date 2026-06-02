@@ -8,8 +8,8 @@ export function getLatestMetrics(assetId: string) {
   return apiClient<LatestMetricsResponse>(`/assets/${assetId}/metrics/latest`)
 }
 
-export function getTimeseries(assetId: string, metric: string, from: string, to: string, interval = '5m') {
+export function getTimeseries(assetId: string, metric: string, from: string, to: string, limit = 1000) {
   if (env.useMockCore) return mockGetTimeseries(assetId, metric)
-  const params = new URLSearchParams({ metric, from, to, interval })
+  const params = new URLSearchParams({ metric, from, to, limit: String(limit) })
   return apiClient<TimeseriesResponse>(`/assets/${assetId}/metrics/timeseries?${params}`)
 }

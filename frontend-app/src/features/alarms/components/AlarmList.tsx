@@ -14,14 +14,14 @@ export function AlarmList({ alarms }: { alarms: AlarmSummary[] }) {
         <button
           key={alarm.id}
           className="w-full rounded-xl border border-white/5 bg-[#0F1B2E] p-2.5 text-left transition hover:border-white/10"
-          onClick={() => { setSelectedAlarmId(alarm.id); if (alarm.assetId) setSelectedAssetId(alarm.assetId) }}
+          onClick={() => { setSelectedAlarmId(alarm.id); const aid = alarm.asset?.id ?? alarm.assetId; if (aid) setSelectedAssetId(aid) }}
           type="button"
         >
           <div className="flex items-center justify-between gap-2">
             <p className="text-[11px] font-semibold text-[#E4EDFB]">{alarm.title}</p>
             <SeverityBadge severity={alarm.severity} />
           </div>
-          <p className="mt-1 font-mono text-[9px] text-[#3D5368]">{alarm.status} · {new Date(alarm.createdAt).toLocaleString()}</p>
+          <p className="mt-1 font-mono text-[9px] text-[#3D5368]">{alarm.state} · {new Date(alarm.raisedAt).toLocaleString()}</p>
         </button>
       ))}
     </div>

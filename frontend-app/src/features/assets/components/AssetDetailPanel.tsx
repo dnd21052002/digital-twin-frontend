@@ -1,16 +1,31 @@
 import { X } from 'lucide-react'
 import { useViewerStore } from '../../../stores/viewer-store'
+import { useAlarms } from '../../alarms/hooks'
 import { AlarmDetail } from '../../alarms/components/AlarmDetail'
 import { AlarmList } from '../../alarms/components/AlarmList'
+import { useLatestMetrics } from '../../telemetry/hooks'
 import { MetricCards } from '../../telemetry/components/MetricCards'
 import { TimeseriesChart } from '../../telemetry/components/TimeseriesChart'
 import { useAssetDetail } from '../hooks'
+
+function displayValue(value: unknown) {
+  if (value == null || value === '') return '—'
+  if (typeof value === 'string' || typeof value === 'number') return String(value)
+  if (typeof value === 'object' && 'name' in value && typeof value.name === 'string') return value.name
+  if (typeof value === 'object' && 'code' in value && typeof value.code === 'string') return value.code
+  return '—'
+}
 
 export function AssetDetailPanel() {
   const selectedAssetId = useViewerStore((state) => state.selectedAssetId)
   const setSelectedAssetId = useViewerStore((state) => state.setSelectedAssetId)
   const { data, isLoading, isError, refetch } = useAssetDetail(selectedAssetId)
+  const metricsQuery = useLatestMetrics(selectedAssetId)
+  const alarmsQuery = useAlarms(selectedAssetId)
   const open = Boolean(selectedAssetId)
+
+  const metrics = metricsQuery.data?.items ?? data?.latestMetrics ?? []
+  const alarms = alarmsQuery.data?.items ?? data?.openAlarms ?? []
 
   return (
     <aside className={`absolute bottom-2.5 left-3.5 top-2.5 z-20 flex w-[300px] flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#060B12]/95 shadow-[0_24px_60px_rgba(0,0,0,0.6)] backdrop-blur-xl transition-transform duration-300 ${open ? 'translate-x-0' : '-translate-x-[120%]'}`}>
@@ -29,20 +44,20 @@ export function AssetDetailPanel() {
               <span>{data.name}</span>
               <span className={`rounded-full border px-2 py-0.5 text-[8px] font-bold uppercase ${data.status === 'alarm' ? 'border-[#FF3D5A]/20 bg-[#FF3D5A]/10 text-[#FF3D5A]' : data.status === 'maintenance' ? 'border-[#FFB020]/20 bg-[#FFB020]/10 text-[#FFB020]' : 'border-[#00E5A0]/20 bg-[#00E5A0]/10 text-[#00E5A0]'}`}>{data.status}</span>
             </div>
-            <div className="mt-1 flex items-center gap-1 text-[10px] text-[#3D5368]">{data.locationPath.join(' › ')}</div>
+            <div className="mt-1 flex items-center gap-1 text-[10px] text-[#3D5368]">{(data.locationPath ?? [data.location.path ?? data.location.rackPositionId ?? data.location.siteId]).filter(Boolean).join(' › ')}</div>
           </div>
           <div className="flex-1 space-y-3 overflow-y-auto p-3.5">
             <div className="grid grid-cols-2 gap-2">
               <Stat label="Tag" value={data.assetTag} color="#00D4FF" />
-              <Stat label="Category" value={data.category} color="#00E5A0" />
+              <Stat label="Category" value={displayValue(data.category)} color="#00E5A0" />
               <Stat label="Model" value={data.model ?? '—'} color="#A855F7" />
-              <Stat label="Serial" value={data.serialNumber ?? '—'} color="#FFB020" />
+              <Stat label="Serial" value={data.serialNo ?? data.serialNumber ?? '—'} color="#FFB020" />
             </div>
-            <MetricCards metrics={data.latestMetrics} />
-            <TimeseriesChart assetId={data.id} />
+            <MetricCards metrics={metrics} />
+            <TimeseriesChart assetId={data.id} metrics={metrics} />
             <section className="rounded-xl border border-white/5 bg-[#0A1220]/70 p-3">
               <h3 className="mb-2 text-[11px] font-bold text-[#E4EDFB]">Related alarms</h3>
-              <AlarmList alarms={data.openAlarms} />
+              <AlarmList alarms={alarms} />
             </section>
             <AlarmDetail />
           </div>

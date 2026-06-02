@@ -5,7 +5,7 @@ import type { AssetDetail, AssetsResponse } from '../core-types'
 
 export function getAssets() {
   if (env.useMockCore) return mockGetAssets()
-  return apiClient<AssetsResponse>('/assets')
+  return apiClient<AssetsResponse>('/assets?limit=50')
 }
 
 export function getAssetDetail(assetId: string) {
